@@ -33,7 +33,7 @@ const frutas = [
     "recursos/pepino.png",
     "recursos/pina.png",
     "recursos/uva.png",
-    "recursos/coco.png",
+    "recursos/coco.jpeg",
     "recursos/manzana.png"
 ];
 
