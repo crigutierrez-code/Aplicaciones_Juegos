@@ -141,10 +141,9 @@ function resetTurno(matched) {
 
 function terminarJuego() {
     clearInterval(temporizador);
-    setTimeout(() => {
-        alert(`🎉 ¡Juego terminado! Tiempo: ${segundos} seg, Intentos: ${intentos}`);
-    }, 200);
-
+    setTimeout(()=>{
+    alert(`🎉 ¡Juego terminado! Tiempo: ${segundos} seg, Intentos: ${intentos}`);
+    },200)
     // Guardar récords
     if (!mejorTiempo || segundos < Number(mejorTiempo)) {
         mejorTiempo = segundos;
