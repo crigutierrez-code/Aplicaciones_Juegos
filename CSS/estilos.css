@@ -1,70 +1,112 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background: #f4f4f9;
-    margin: 0;
-    padding: 20px;
+/* css/estilos.css */
+:root{
+  --bg: #f4f4f9;
+  --dark: #1e1e2f;
+  --card-size: 72px;
 }
 
-h1 {
-    margin-bottom: 20px;
-    color: #333;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background:var(--bg);
+  color:#222;
+  text-align:center;
+  padding:24px;
 }
 
-.controles {
-    margin-bottom: 15px;
+.container{max-width:1100px;margin:0 auto}
+
+h1{margin:0 0 12px;font-size:32px;color:#222}
+
+.controles{margin:12px 0;display:flex;gap:8px;align-items:center;justify-content:center}
+.informacion{margin:12px 0 20px;font-size:18px}
+
+/* Tablero */
+.tablero-wrapper{display:flex;justify-content:center;align-items:center}
+.tablero{
+  display:grid;
+  gap:14px;
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+  align-content:start;
+  justify-items:center;
+  padding:12px;
 }
 
-.informacion {
-    margin-bottom: 20px;
-    font-size: 18px;
+/* Carta (botón para accesibilidad) */
+.card{
+  width:var(--card-size);
+  height:var(--card-size);
+  background:transparent;
+  border:0;
+  padding:0;
+  perspective:1000px;
 }
 
-.tablero {
-    display: grid;
-    gap: 10px;
-    justify-content: center;
-    margin: 0 auto;
-    max-width: 90vw;
+.card .inner{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition: transform 0.45s;
+  border-radius:10px;
 }
 
-.card {
-    width: 60px;
-    height: 60px;
-    perspective: 1000px;
-    cursor: pointer;
-    position: relative;
-}
-
+/* front / back */
 .card .front,
-.card .back {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    transition: transform 0.5s;
+.card .back{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+  border:2px solid rgba(0,0,0,0.15);
 }
 
-.card .front {
-    background: #fff;
-    transform: rotateY(180deg);
+/* front: la imagen (visible cuando la carta está volteada) */
+.card .front{
+  transform: rotateY(180deg);
+  background:#fff;
 }
 
-.card .back {
-    background: #1e1e2f;
-    color: #fff;
+/* imagen de fruta */
+.card .front img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
-.card.flip .front {
-    transform: rotateY(0);
+/* back: dorso personalizado */
+.card .back{
+  background: linear-gradient(180deg,#252431,#1e1e2f);
+  color:#fff;
+  transform: rotateY(0deg);
+  /* puedes usar imagen como dorso:
+     background-image: url('../recursos/dorso.png');
+     background-size: cover;
+  */
 }
 
-.card.flip .back {
-    transform: rotateY(180deg);
+/* estado volteado: rota el contenedor inner */
+.card.flip .inner{
+  transform: rotateY(180deg);
+  cursor: default;
+}
+
+/* pareja encontrada */
+.card.matched{opacity:0.85;pointer-events:none;filter:saturate(1.05)}
+
+/* responsive: aumentar tamaño en pantallas pequeñas/medianas */
+@media (min-width:700px){
+  :root{ --card-size: 84px; }
+}
+@media (min-width:1100px){
+  :root{ --card-size: 96px; }
 }
