@@ -37,8 +37,7 @@ function iniciarJuego() {
     tablero.style.gridTemplateColumns = `repeat(${tamano}, 1fr)`;
 
     let numCartas = tamano * tamano;
-    if (numCartas % 2 !== 0) numCartas--; // si es impar, quitamos 1
-
+    if (numCartas % 2 !== 0) numCartas--; // si es impar, quitamos 
     totalParejas = numCartas / 2;
 
     // Generar pares de emojis
@@ -117,8 +116,9 @@ function reiniciarTablero() {
 
 function terminarJuego() {
     clearInterval(temporizador);
+    setTimeout(()=>{
     alert(`🎉 ¡Juego terminado! Tiempo: ${segundos} seg, Intentos: ${intentos}`);
-
+    },200)
     // Guardar récords
     if (!mejorTiempo || segundos < mejorTiempo) {
         mejorTiempo = segundos;
