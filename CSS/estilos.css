@@ -16,7 +16,7 @@
     display: flex;
     justify-content: center;
     gap: 85px;
-    padding: 10px 0;
+    padding: 10px;
 }
 
 .navbar a {
@@ -41,7 +41,7 @@
 
 /* Si no usas .T, elimínala */
 .T {
-    margin-top: 120px; /* top eliminado porque no tenía efecto */
+    margin-top: 80px; /* top eliminado porque no tenía efecto */
 }
 
 /* Estilo general */
@@ -51,7 +51,7 @@
 
 body {
     margin: 0;
-    padding: 24px;
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: var(--bg);
     color: #222;
