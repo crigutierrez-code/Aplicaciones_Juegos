@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial de Tareas Diarias</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Historial de Tareas Diarias</h1>
+  </header>
+
+  <main>
+    <!-- Formulario para registrar tarea -->
+    <section class="formulario-seccion">
+      <form id="formularioTarea">
+        <input type="date" id="fechaTarea" required>
+        <input type="text" id="descripcionTarea" placeholder="Descripción de la tarea" required>
+        <button type="submit">Agregar Tarea</button>
+      </form>
+    </section>
+
+    <!-- Filtros de búsqueda -->
+    <section class="filtro-seccion">
+      <input type="text" id="buscarEntrada" placeholder="Buscar tarea...">
+    </section>
+
+    <!-- Contador -->
+    <section class="contador-seccion">
+      <p>Total pendientes: <span id="contadorPendientes">0</span></p>
+      <p>Total completadas: <span id="contadorCompletadas">0</span></p>
+    </section>
+
+    <!-- Lista de tareas -->
+    <section class="tareas-seccion">
+      <ul id="listaTareas"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
