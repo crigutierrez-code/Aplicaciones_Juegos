@@ -1,5 +1,5 @@
-const img= document.getElementById("img");
-const palabra= document.getElementById("palabra");
+const Img= document.getElementById("img");
+const palabra= document.getElementById("Palabra");
 const msg= document.getElementById("msg");
 const letras= document.getElementById("letras");
 const reset= document.getElementById("reset");
@@ -10,13 +10,13 @@ const MAX_F =6;
 let Palabra, oculta, usadas, fallos;
 
 function cambiarImagen(fallos){
-    img.src=`img/ahorcado${fallos}.png`;
+    img.src= 'recursos/ahorcado${fallos}.png';
 }
 
 function iniciar(){
     Palabra= PALABRAS[Math.floor(Math.random()*PALABRAS.length)]
     oculta= Array(Palabra.length).fill("_");
-    usadas= new setInterval();
+    usadas= new Set();
     fallos=0;
     palabra.textContent= oculta.join(" ");
     msg.textContent= "";
@@ -25,7 +25,7 @@ function iniciar(){
     for(let i=65; i<90; i++){
         const btn= document.createElement("button");
         btn.textContent= String.fromCharCode(i);
-        btn.onclick= manejarLetra(btn.textContent);
+        btn.onclick= ()=> manejarLetra(btn.textContent);
         letras.appendChild(btn);
     }
     cambiarImagen(0);
@@ -55,38 +55,39 @@ function manejarLetra(letra){
         }
         guardarPartida();
     }
-
-    function fin(ganado){
-        document.querySelectorAll("#letras button").forEach(b=>b.disabled=true);
-        msg.textContent= ganado? "¡Felicidades, ganaste!":"¡Lo siento, perdiste! La palabra era: ${Palabra}";
-        msg.className= ganado? "ganaste":"perdiste";
-        localStorage.removeItem("ahorcado");
-    }
-
-    function guardarPartida(){
-        localStorage.setItem("ahorcado", JSON.stringify({Palabra, oculta: oculta.join(""),usadas: [...usadas] , fallos}));
-    }
-    function cargarPartida(){
-        const raw= localStorage.getItem("ahorcado");
-        try{
-            const g= JSON.parse(raw);
-            palabra = g.Palabra;
-            oculta= g.oculta.split("");
-            usadas= new Set(g.usadas);
-            fallos= g.fallos;
-            palabra.textContent= oculta.join(" ");
-            cambiarImagen(fallos);
-            for(let i=65; i<90; i++){
-                const letra= String.fromCharCode(i);
-                if(usadas.has(letra)){
-                    const btn= [...letras.children].find(b=>b.textContent===letra);
-                    if (btn) btn.disabled=true;
-                }
-            }
-        }catch(e){
-            localStorage.removeItem("ahorcado");
-        }
-    } 
-    reset.onclick= ()=>{localStorage.removeItem("ahorcado"); iniciar();};
-    iniciar();
 }
+
+function fin(ganado){
+    document.querySelectorAll("#letras button").forEach(b=>b.disabled=true);
+    msg.textContent= ganado? "¡Felicidades, ganaste!":"¡Lo siento, perdiste! La palabra era: ${Palabra}";
+    msg.className= ganado? "ganaste":"perdiste";
+    sessionStorage.removeItem("ahorcado");
+}
+
+function guardarPartida(){
+    sessionStorage.setItem("ahorcado", JSON.stringify({Palabra, oculta: oculta.join(""),usadas: [...usadas] , fallos}));
+}
+
+function cargarPartida(){
+    const raw= localStorage.getItem("ahorcado");
+    try{
+        const g= JSON.parse(raw);
+        Palabra = g.Palabra;
+        oculta= g.oculta.split("");
+        usadas= new Set(g.usadas);
+        fallos= g.fallos;
+        palabraEl.textContent= oculta.join(" ");
+        cambiarImagen(fallos);
+        for(let i=65; i<90; i++){
+            const letra= String.fromCharCode(i);
+            if(usadas.has(letra)){
+                const btn= [...letras.children].find(b=>b.textContent===letra);
+                if (btn) btn.disabled=true;
+            }
+        }
+    }catch(e){
+        sessionStorage.removeItem("ahorcado");
+    }
+} 
+    reset.onclick= ()=>{sessionStorage.removeItem("ahorcado"); iniciar();};
+    iniciar();
