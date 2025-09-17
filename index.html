@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Memorama</title>
 </head>
 
@@ -43,7 +43,21 @@
         </section>
     </main>
 
-    <script src="js/logica.js"></script>
+            <!-- Información -->
+            <section class="informacion" aria-live="polite">
+                <p>Tiempo: <span id="tiempo">0</span> seg</p>
+                <p>Intentos: <span id="intentos">0</span></p>
+                <p>Mejor Tiempo: <span id="MejorTiempo">--</span></p>
+                <p>Menor Intentos: <span id="MejorIntento">--</span></p>
+            </section>
+
+            <!-- Tablero -->
+            <section class="tablero-wrapper">
+                <div class="tablero" id="tablero" role="grid" aria-label="Tablero de memorama"></div>
+            </section>
+        </main>
+
+        <script src="app.js"></script>
 </body>
 
 </html>

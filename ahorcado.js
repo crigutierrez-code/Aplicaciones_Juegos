@@ -1,4 +1,4 @@
-const Img= document.getElementById("img");
+const img= document.getElementById("img");
 const palabra= document.getElementById("Palabra");
 const msg= document.getElementById("msg");
 const letras= document.getElementById("letras");
@@ -10,7 +10,7 @@ const MAX_F =6;
 let Palabra, oculta, usadas, fallos;
 
 function cambiarImagen(fallos){
-    img.src= 'recursos/ahorcado${fallos}.png';
+    img.src= 'recursos/ahorcado${fallos}.jpg';
 }
 
 function iniciar(){
@@ -29,7 +29,6 @@ function iniciar(){
         letras.appendChild(btn);
     }
     cambiarImagen(0);
-    cargaPartida();
 }
 
 function manejarLetra(letra){
@@ -59,7 +58,7 @@ function manejarLetra(letra){
 
 function fin(ganado){
     document.querySelectorAll("#letras button").forEach(b=>b.disabled=true);
-    msg.textContent= ganado? "¡Felicidades, ganaste!":"¡Lo siento, perdiste! La palabra era: ${Palabra}";
+    msg.textContent= ganado? "¡Felicidades, ganaste!":"¡Lo siento, perdiste! La palabra era:"+ {Palabra};
     msg.className= ganado? "ganaste":"perdiste";
     sessionStorage.removeItem("ahorcado");
 }
@@ -69,25 +68,25 @@ function guardarPartida(){
 }
 
 function cargarPartida(){
-    const raw= localStorage.getItem("ahorcado");
-    try{
-        const g= JSON.parse(raw);
-        Palabra = g.Palabra;
-        oculta= g.oculta.split("");
-        usadas= new Set(g.usadas);
-        fallos= g.fallos;
-        palabraEl.textContent= oculta.join(" ");
-        cambiarImagen(fallos);
-        for(let i=65; i<90; i++){
-            const letra= String.fromCharCode(i);
-            if(usadas.has(letra)){
-                const btn= [...letras.children].find(b=>b.textContent===letra);
-                if (btn) btn.disabled=true;
-            }
-        }
-    }catch(e){
-        sessionStorage.removeItem("ahorcado");
+  const raw = localStorage.getItem('ahorcado');
+  if(!raw) return;
+  try{
+    const g = JSON.parse(raw);
+    palabra = g.palabra;
+    oculta  = g.oculta.split('');
+    usadas  = new Set(g.usadas);
+    fallos  = g.fallos;
+    palabra.textContent = oculta.join(' ');
+    cambiarImagen(fallos);
+    for(let i=65;i<=90;i++){
+      const letra=String.fromCharCode(i);
+      if(usadas.has(letra)){
+        const btn=[...letras.children].find(b=>b.textContent===letra);
+        if(btn) btn.disabled=true;
+      }
     }
-} 
+  }catch(e){localStorage.removeItem('ahorcado');}
+}
+ 
     reset.onclick= ()=>{sessionStorage.removeItem("ahorcado"); iniciar();};
     iniciar();

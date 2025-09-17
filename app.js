@@ -35,7 +35,7 @@ const frutas = [
     "recursos/uva.png",
     "recursos/coco.jpeg",
     "recursos/manzana.png",
-    "resursos/melon.jpeg",
+    "recursos/melon.jpeg",
     "recursos/pera.png",
     "recursos/sandia.jpg",
     "recursos/mandarina.png",
@@ -181,9 +181,9 @@ function resetTurno(matched) {
 
 function terminarJuego() {
     clearInterval(temporizador);
-    setTimeout(()=>{
-    alert(`🎉 ¡Juego terminado! Tiempo: ${segundos} seg, Intentos: ${intentos}`);
-    },200)
+    setTimeout(() => {
+        alert(`🎉 ¡Juego terminado! Tiempo: ${segundos} seg, Intentos: ${intentos}`);
+    }, 200)
     // Guardar récords
     if (!mejorTiempo || segundos < Number(mejorTiempo)) {
         mejorTiempo = segundos;
