@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Memorama</title>
+</head>
+
+<body>
+    <main class="container">
+
+
+        <main class="container">
+            <div class="mc">
+                <div class="navbar">
+                    <a href="">Historial de Tareas Diarias</a>
+                    <a href="" class="active">Memorama</a>
+                    <a href="">Ahorcado</a>
+                </div>
+            </div>
+
+            <h1 class="T">Juego de Memoria</h1>
+
+            <!-- Controles -->
+            <div class="controles">
+                <label for="dificultad">Dificultad:</label>
+                <select id="dificultad">
+                    <option value="4" selected>4x4</option>
+                    <option value="6">6x6</option>
+                    <option value="10">10x10</option>
+                </select>
+                <button id="iniciar">Iniciar Juego</button>
+            </div>
+
+            <!-- Información -->
+            <section class="informacion" aria-live="polite">
+                <p>Tiempo: <span id="tiempo">0</span> seg</p>
+                <p>Intentos: <span id="intentos">0</span></p>
+                <p>Mejor Tiempo: <span id="MejorTiempo">--</span></p>
+                <p>Menor Intentos: <span id="MejorIntento">--</span></p>
+            </section>
+
+            <!-- Tablero -->
+            <section class="tablero-wrapper">
+                <div class="tablero" id="tablero" role="grid" aria-label="Tablero de memorama"></div>
+            </section>
+        </main>
+
+        <script src="app.js"></script>
+</body>
+
+</html>
