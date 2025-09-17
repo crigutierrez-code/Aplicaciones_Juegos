@@ -6,7 +6,7 @@ Aplicaciones disponibles
 - Historial de Tareas (Link)  
   Gestor de tareas con fechas, búsqueda y almacenamiento en IndexedDB.  
 
-- Memorama (Link)  
+- Memorama ([Link](https://github.com/crigutierrez-code/Aplicaciones_Juegos/tree/memorama))  
   Juego clásico de memoria con diferentes niveles de dificultad y almacenamiento en Local Storage
 
 - Ahorcado (Link)  
