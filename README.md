@@ -8,7 +8,7 @@ Aplicación para gestionar tareas con:
 - Guardado en IndexedDB.
 
 Cómo usar
-1. Abrir `index.html` en el navegador.  
+1. Abrir index.html en el navegador.  
 2. Agregar una tarea con la fecha y descripción.  
 3. Administrar las tareas desde la lista.  
 
