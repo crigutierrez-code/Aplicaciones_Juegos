@@ -9,5 +9,5 @@ Aplicaciones disponibles
 - Memorama ([Link](https://github.com/crigutierrez-code/Aplicaciones_Juegos/tree/memorama))  
   Juego clásico de memoria con diferentes niveles de dificultad y almacenamiento en Local Storage
 
-- Ahorcado (Link)  
+- Ahorcado ([Link](https://github.com/crigutierrez-code/Aplicaciones_Juegos/tree/ahorcado))  
   Juego del ahorcado con palabras aleatorias y contador de intentos y usando Session Storage
