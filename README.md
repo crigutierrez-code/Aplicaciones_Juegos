@@ -3,7 +3,7 @@ Este repositorio contiene varias aplicaciones desarrolladas en HTML, CSS y JavaS
 
 Aplicaciones disponibles
 
-- Historial de Tareas (Link)  
+- Historial de Tareas ([Link](https://github.com/crigutierrez-code/Aplicaciones_Juegos/tree/historial-tareas))  
   Gestor de tareas con fechas, búsqueda y almacenamiento en IndexedDB.  
 
 - Memorama ([Link](https://github.com/crigutierrez-code/Aplicaciones_Juegos/tree/memorama))  
