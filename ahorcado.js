@@ -45,19 +45,19 @@ function manejarLetra(letra){
         for(let i=0; i<Palabra.length; i++){
             if(Palabra[i]===letraMin) oculta[i]=letraMin;
         }
-    }
 
-    palabra.textContent= oculta.join(" ");
-    if(!oculta.includes("_")){
-        fin(true);
+        palabra.textContent= oculta.join(" ");
+        if(!oculta.includes("_")){
+            fin(true);
+        }
     }else{
         fallos++;
         cambiarImagen(fallos);
         if(fallos===MAX_F){
             fin(false);
         }
-        guardarPartida();
     }
+    guardarPartida();
 }
 
 function fin(ganado){
