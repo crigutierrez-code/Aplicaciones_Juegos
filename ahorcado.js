@@ -66,3 +66,8 @@ function fin(ganado){
     msg.className= ganado? "ganaste":"perdiste";
     sessionStorage.removeItem("ahorcado");
 }
+
+function guardarPartida(){
+    sessionStorage.setItem("ahorcado", JSON.stringify({Palabra, oculta: oculta.join(""),usadas: [...usadas] , fallos}));
+}
+
