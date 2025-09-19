@@ -51,18 +51,21 @@
 .nav-link[data-dificultad="4"].active {
     background-color: var(--facil-color);
     border-bottom-color: var(--facil-color);
+    border-radius: 8px;
 }
 
 /* Medio */
 .nav-link[data-dificultad="6"].active {
     background-color: var(--medio-color);
     border-bottom-color: var(--medio-color);
+    border-radius: 8px;
 }
 
 /* Difícil */
 .nav-link[data-dificultad="10"].active {
     background-color: var(--dificil-color);
     border-bottom-color: var(--dificil-color);
+    border-radius: 8px;
 }
 
 /* Estilo general */
@@ -87,10 +90,9 @@ body {
 .controles {
     margin: 12px 0;
     display: flex;
-    gap: 8px;
-    align-items: center;
     justify-content: center;
 }
+
 
 .informacion {
     margin: 12px 0 20px;
