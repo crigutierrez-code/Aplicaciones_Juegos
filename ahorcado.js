@@ -10,4 +10,6 @@ const MAX_F =6;
 
 let Palabra, oculta, usadas, fallos;
 
-
+function cambiarImagen(fallos){
+    img.src = `recursos/ahorcado${fallos}.png`;
+}
