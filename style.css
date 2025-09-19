@@ -2,46 +2,67 @@
     --bg: #f4f4f9;
     --dark: #1e1e2f;
     --card-size: 72px;
+    --facil-color: #4caf50;
+    --medio-color: #ff9800;
+    --dificil-color: #f44336;
 }
 
-/* Barra superior */
-.mc {
+/* Barra de navegación */
+.nav-container {
     width: 100%;
-    position: fixed;
-    top: 0;
-    background: purple;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .navbar {
     display: flex;
     justify-content: center;
-    gap: 85px;
-    padding: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.navbar a {
-    text-decoration: none;
-    color: #f4f4f4;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 8px;
-    padding: 10px 15px;
-    background: red;
-}
-
-.navbar a.active {
-    background: white;
-    color: var(--dark);
-}
-
-/* Títulos */
-.t {
+.nav-link {
+    flex: 1;
     text-align: center;
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    position: relative;
+    border-bottom: 3px solid transparent;
 }
 
-/* Si no usas .T, elimínala */
-.T {
-    margin-top: 80px; /* top eliminado porque no tenía efecto */
+.nav-link:hover {
+    background-color: #f8f9fa;
+}
+
+.nav-link.active {
+    color: white;
+}
+
+/* Fácil */
+.nav-link[data-dificultad="4"].active {
+    background-color: var(--facil-color);
+    border-bottom-color: var(--facil-color);
+}
+
+/* Medio */
+.nav-link[data-dificultad="6"].active {
+    background-color: var(--medio-color);
+    border-bottom-color: var(--medio-color);
+}
+
+/* Difícil */
+.nav-link[data-dificultad="10"].active {
+    background-color: var(--dificil-color);
+    border-bottom-color: var(--dificil-color);
 }
 
 /* Estilo general */
@@ -51,7 +72,7 @@
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
     background: var(--bg);
     color: #222;
@@ -61,12 +82,6 @@ body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
-}
-
-h1 {
-    margin: 0 0 12px;
-    font-size: 32px;
-    color: #222;
 }
 
 .controles {
@@ -100,7 +115,7 @@ h1 {
     padding: 12px;
 }
 
-/* Carta (botón para accesibilidad) */
+/* Carta */
 .card {
     width: var(--card-size);
     height: var(--card-size);
@@ -134,13 +149,12 @@ h1 {
     border: 2px solid rgba(0, 0, 0, 0.15);
 }
 
-/* Front: la imagen (visible cuando está volteada) */
+/* Front: imagen */
 .card .front {
     transform: rotateY(180deg);
     background: #fff;
 }
 
-/* Imagen de fruta */
 .card .front img {
     width: 100%;
     height: 100%;
@@ -148,14 +162,11 @@ h1 {
     display: block;
 }
 
-/* Back: dorso */
+/* Back */
 .card .back {
     background: linear-gradient(180deg, #252431, #1e1e2f);
     color: #fff;
     transform: rotateY(0deg);
-    /* Opción: usar imagen personalizada */
-    /* background-image: url('../recursos/dorso.png');
-       background-size: cover; */
 }
 
 /* Estado volteado */

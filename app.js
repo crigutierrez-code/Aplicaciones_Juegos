@@ -1,11 +1,11 @@
-// js/logica.js
 const tablero = document.getElementById("tablero");
 const tiempoEl = document.getElementById("tiempo");
 const intentosEl = document.getElementById("intentos");
 const mejorTiempoEl = document.getElementById("MejorTiempo");
 const mejorIntentosEl = document.getElementById("MejorIntento");
 const botonIniciar = document.getElementById("iniciar");
-const dificultadSelect = document.getElementById("dificultad");
+
+let dificultadSeleccionada = null; // se asigna al elegir en el menú
 
 // Estado del juego
 let primeraCarta = null;
@@ -17,13 +17,13 @@ let totalParejas = 0;
 let temporizador = null;
 let segundos = 0;
 
-// Récords (localStorage)
+// Récords
 let mejorTiempo = localStorage.getItem("mejorTiempo");
 let mejorIntentos = localStorage.getItem("mejorIntentos");
 if (mejorTiempo) mejorTiempoEl.textContent = mejorTiempo + " seg";
 if (mejorIntentos) mejorIntentosEl.textContent = mejorIntentos;
 
-// Lista de imágenes: ruta relativa (sin caracteres especiales en archivos)
+// Lista de imágenes
 const frutas = [
     "recursos/banana.png",
     "recursos/durazno.png",
@@ -77,53 +77,67 @@ const frutas = [
     "recursos/calabaza.jpg"
 ];
 
-botonIniciar.addEventListener("click", iniciarJuego);
+// Selección de dificultad
+const navLinks = document.querySelectorAll(".nav-link");
+navLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        navLinks.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+        dificultadSeleccionada = parseInt(link.dataset.dificultad);
+    });
+});
 
-function iniciarJuego() {
+// Botón iniciar
+botonIniciar.addEventListener("click", () => {
+    if (!dificultadSeleccionada) {
+        alert("Selecciona una dificultad antes de iniciar.");
+        return;
+    }
+    iniciarJuego(dificultadSeleccionada);
+});
+
+function iniciarJuego(tamano) {
     // Reinicio
     tablero.innerHTML = "";
     intentos = 0;
     aciertos = 0;
-    intentosEl.textContent = intentos;
+    intentosEl.textContent = 0;
     tiempoEl.textContent = 0;
     clearInterval(temporizador);
     segundos = 0;
     primeraCarta = segundaCarta = null;
     tableroBloqueado = false;
 
-    // Configurar tamaño
-    const tamano = parseInt(dificultadSelect.value, 10);
-    const numCartas = (() => {
-        let n = tamano * tamano;
-        if (n % 2 !== 0) n--; // asegurar par
-        return n;
-    })();
+    // Número de cartas
+    let numCartas = tamano * tamano;
+    if (numCartas % 2 !== 0) numCartas--;
     totalParejas = numCartas / 2;
 
-    // Seleccionar aleatoriamente las imágenes necesarias y duplicarlas
-    const seleccionadas = shuffle(Array.from(frutas)).slice(0, totalParejas);
+    // Imágenes y duplicado
+    const seleccionadas = shuffle(frutas).slice(0, totalParejas);
     const cartasArray = shuffle([...seleccionadas, ...seleccionadas]);
 
-    // Ajustar grid para columnas y filas
+    // Grid dinámico
     tablero.style.gridTemplateColumns = `repeat(${tamano}, minmax(60px, 1fr))`;
 
-    // Crear elementos de carta
+    // Crear cartas
     cartasArray.forEach(src => {
-        const carta = document.createElement("button"); // accesible como botón
+        const carta = document.createElement("button");
         carta.type = "button";
         carta.className = "card";
-        carta.dataset.image = src; // usar data-atributo para comparar
+        carta.dataset.image = src;
         carta.innerHTML = `
-            <div class="inner">
-                <div class="front"><img src="${src}" alt="fruta"></div>
-                <div class="back" aria-hidden="true"></div>
-            </div>
-        `;
+      <div class="inner">
+        <div class="front"><img src="${src}" alt="fruta"></div>
+        <div class="back" aria-hidden="true"></div>
+      </div>
+    `;
         carta.addEventListener("click", voltearCarta);
         tablero.appendChild(carta);
     });
 
-    // Iniciar temporizador
+    // Temporizador
     temporizador = setInterval(() => {
         segundos++;
         tiempoEl.textContent = segundos;
@@ -133,8 +147,7 @@ function iniciarJuego() {
 function voltearCarta(e) {
     if (tableroBloqueado) return;
     const carta = e.currentTarget;
-    if (carta === primeraCarta) return;
-    if (carta.classList.contains("matched")) return;
+    if (carta === primeraCarta || carta.classList.contains("matched")) return;
 
     carta.classList.add("flip");
 
@@ -156,25 +169,23 @@ function comprobarPareja() {
     const img2 = segundaCarta.dataset.image;
 
     if (img1 === img2) {
-        // Pareja correcta
         primeraCarta.classList.add("matched");
         segundaCarta.classList.add("matched");
         primeraCarta.removeEventListener("click", voltearCarta);
         segundaCarta.removeEventListener("click", voltearCarta);
-        resetTurno(true);
+        resetTurno();
         aciertos++;
         if (aciertos === totalParejas) terminarJuego();
     } else {
-        // No son pareja
         setTimeout(() => {
             primeraCarta.classList.remove("flip");
             segundaCarta.classList.remove("flip");
-            resetTurno(false);
+            resetTurno();
         }, 800);
     }
 }
 
-function resetTurno(matched) {
+function resetTurno() {
     [primeraCarta, segundaCarta] = [null, null];
     tableroBloqueado = false;
 }
@@ -183,8 +194,8 @@ function terminarJuego() {
     clearInterval(temporizador);
     setTimeout(() => {
         alert(`🎉 ¡Juego terminado! Tiempo: ${segundos} seg, Intentos: ${intentos}`);
-    }, 200)
-    // Guardar récords
+    }, 200);
+
     if (!mejorTiempo || segundos < Number(mejorTiempo)) {
         mejorTiempo = segundos;
         localStorage.setItem("mejorTiempo", mejorTiempo);
@@ -197,7 +208,7 @@ function terminarJuego() {
     }
 }
 
-// Util: Fisher–Yates shuffle
+// Mezcla aleatoria
 function shuffle(array) {
     const a = array.slice();
     for (let i = a.length - 1; i > 0; i--) {
