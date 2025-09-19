@@ -1,0 +1,55 @@
+.mc {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: purple;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 85px;
+    padding: 10px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #f4f4f4;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 8px;
+    padding: 10px 15px;
+    background: red;
+}
+
+.navbar a.active {
+    background: white;
+    color: var(--dark);
+}
+
+.T {
+    margin-top: 80px; 
+    text-align: center;
+}
+.t{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 5px;
+}
+.container {
+    max-width: 1100px;
+}
+
+.img {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    display: block;
+}
+
+.button {
+    text-align: center;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+}
