@@ -31,3 +31,68 @@ function iniciar(){
     }
     cambiarImagen(0);
 }
+
+function manejarLetra(letra){
+    
+    const letraMin = letra.toLowerCase();
+    if (usadas.has(letraMin)) return;
+        usadas.add(letraMin);
+
+    document.querySelectorAll("#letras button")
+    .forEach(b=>{if (b.textContent === letra) b.disabled = true;});
+
+    if(Palabra.includes(letraMin)){
+        for(let i=0; i<Palabra.length; i++){
+            if(Palabra[i]===letraMin) oculta[i]=letraMin;
+        }
+    }
+
+    palabra.textContent= oculta.join(" ");
+    if(!oculta.includes("_")){
+        fin(true);
+    }else{
+        fallos++;
+        cambiarImagen(fallos);
+        if(fallos===MAX_F){
+            fin(false);
+        }
+        guardarPartida();
+    }
+}
+
+function fin(ganado){
+    document.querySelectorAll("#letras button").forEach(b=>b.disabled=true);
+    msg.textContent= ganado? "¡Felicidades, ganaste!": `¡Lo siento, perdiste! La palabra era: ${Palabra}`;
+    msg.className= ganado? "ganaste":"perdiste";
+    sessionStorage.removeItem("ahorcado");
+}
+
+function guardarPartida(){
+    sessionStorage.setItem("ahorcado", JSON.stringify({Palabra, oculta: oculta.join(""),usadas: [...usadas] , fallos}));
+}
+
+function cargarPartida(){
+  const raw = sessionStorage.getItem('ahorcado');
+  if(!raw) return;
+  try{
+    const g = JSON.parse(raw);
+    palabra = g.palabra;
+    oculta  = g.oculta.split('');
+    usadas  = new Set(g.usadas);
+    fallos  = g.fallos;
+    palabra.textContent = oculta.join(' ');
+    cambiarImagen(fallos);
+    for(let i=65;i<=90;i++){
+      const letra=String.fromCharCode(i);
+      if(usadas.has(letra)){
+        const btn=[...letras.children].find(b=>b.textContent===letra);
+        if(btn) btn.disabled=true;
+      }
+    }
+  }catch(e){
+    sessionStorage.removeItem('ahorcado');
+  }
+}
+ 
+reset.onclick= ()=>{sessionStorage.removeItem("ahorcado"); iniciar();};
+iniciar();
