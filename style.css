@@ -1,90 +1,91 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
 }
 
 header {
-  background: #4caf50;
-  color: white;
-  padding: 1rem;
-  text-align: center;
+    background: #4caf50;
+    color: white;
+    padding: 16px;
+    text-align: center;
 }
 
 main {
-  max-width: 600px;
-  margin: 2rem auto;
-  background: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: 32px auto;
+    background: white;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 1rem;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
 }
 
-form input, form button {
-  padding: 0.5rem;
-  font-size: 1rem;
+form input,
+form button {
+    padding: 8px;
+    font-size: 16px;
 }
 
 form button {
-  background: #4caf50;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.3s;
+    background: #4caf50;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
 form button:hover {
-  background: #45a049;
+    background: #45a049;
 }
 
 #buscarEntrada {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
 }
 
 .tareas-seccion ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .tarea-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #e8f5e9;
-  margin-bottom: 0.5rem;
-  padding: 0.7rem;
-  border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e8f5e9;
+    margin-bottom: 8px;
+    padding: 11px;
+    border-radius: 5px;
 }
 
 .tarea-item.completada {
-  background: #d1c4e9;
-  text-decoration: line-through;
+    background: #d1c4e9;
+    text-decoration: line-through;
 }
 
 .botones-tarea button {
-  margin-left: 5px;
-  padding: 0.3rem 0.6rem;
-  border: none;
-  cursor: pointer;
-  border-radius: 3px;
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
 }
 
 .botones-tarea .completar-btn {
-  background: #2196f3;
-  color: white;
+    background: #2196f3;
+    color: white;
 }
 
 .botones-tarea .eliminar-btn {
-  background: #f44336;
-  color: white;
+    background: #f44336;
+    color: white;
 }
