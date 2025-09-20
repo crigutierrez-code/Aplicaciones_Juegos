@@ -13,13 +13,11 @@
 
 .navbar {
     display: flex;
-    gap: 85px;
     padding: 10px;
 }
 
 .navbar > a {
     text-decoration: none;
-    
     font-weight: bold;
     font-size: 20px;
     border-radius: 8px;
@@ -44,10 +42,6 @@
   background: rgb(221, 10, 10);
   margin: 10px auto 0;
   border-radius: 2px;
-}
-
-.container {
-    max-width: 1100px;
 }
 
 .img {
