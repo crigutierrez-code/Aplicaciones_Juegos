@@ -1,13 +1,18 @@
+*{
+    justify-content: center;      /* centra verticalmente */
+    align-items: center;          /* centra horizontalmente */
+    text-align: center; 
+}
+
 .mc {
     width: 100%;
     position: fixed;
     top: 0;
-    background: purple;
+    background: rgb(40, 114, 211);
 }
 
 .navbar {
     display: flex;
-    justify-content: center;
     gap: 85px;
     padding: 10px;
 }
@@ -24,15 +29,14 @@
 
 .navbar a.active {
     background: white;
-    color: var(--dark);
+    color: black;
 }
 
 .T {
     margin-top: 80px; 
-    text-align: center;
+
 }
 .t{
-    text-align: center;
     font-size: 30px;
     margin-top: 5px;
 }
@@ -51,5 +55,5 @@
     text-align: center;
     margin-top: 20px;
     padding: 12px 24px;
-    font-size: 16px;
+    font-size: 16px;       
 }
