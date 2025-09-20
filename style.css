@@ -17,29 +17,35 @@
     padding: 10px;
 }
 
-.navbar a {
+.navbar > a {
     text-decoration: none;
-    color: #f4f4f4;
+    
     font-weight: bold;
     font-size: 20px;
     border-radius: 8px;
     padding: 10px 15px;
-    background: red;
+    background: rgb(238, 215, 215);
 }
 
-.navbar a.active {
-    background: white;
-    color: black;
+
+.T{
+    margin-top: 80px;
 }
 
-.T {
-    margin-top: 80px; 
-
-}
-.t{
+.T ~ .t{
     font-size: 30px;
-    margin-top: 5px;
+    margin-top: 5px; 
 }
+.T::after {
+  content: "";
+  display: block;
+  width: 400%;
+  height: 4px;
+  background: rgb(221, 10, 10);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
 .container {
     max-width: 1100px;
 }
@@ -55,5 +61,11 @@
     text-align: center;
     margin-top: 20px;
     padding: 12px 24px;
-    font-size: 16px;       
+    font-size: 16px; 
+    border-radius: 12px;      
+}
+
+.button:hover {
+  background: rgb(0, 217, 255);       
+  transform: scale(1.05);
 }
