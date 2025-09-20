@@ -68,12 +68,19 @@ function mostrarTareas(filtro = "") {
 
     contadorPendientes.textContent = pendientes;
     contadorCompletadas.textContent = completadas;
-  };
+  };    
 }
 
 // Agregar nueva tarea
 formularioTarea.addEventListener("submit", e => {
-  e.preventDefault();
+  e.preventDefault(); 
+
+  // Validación: evitar campos vacíos
+  if (!descripcionTarea.value.trim()) {
+    alert("Por favor completa todos los campos antes de agregar la tarea.");
+    return; 
+  }
+
   const nuevaTarea = {
     fecha: fechaTarea.value,
     descripcion: descripcionTarea.value,
