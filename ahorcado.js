@@ -76,7 +76,7 @@ function cargarPartida(){
   if(!raw) return;
   try{
     const g = JSON.parse(raw);
-    palabra = g.palabra;
+    Palabra = g.palabra;
     oculta  = g.oculta.split('');
     usadas  = new Set(g.usadas);
     fallos  = g.fallos;
